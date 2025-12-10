@@ -7,5 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "marked": "^15.0.8"
+  },
+  "scripts": {
+    "dev:h5": "uni --type h5 --watch"
   }
 }
