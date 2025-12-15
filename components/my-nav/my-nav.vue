@@ -15,7 +15,7 @@
 			<!-- Left Content -->
 			<view class="leftBar">
 				<view class="circle" @click="toUrl('/pages/banner/banner')">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="/static/logo.png" mode="aspectFill"></image>
 				</view>
 				<view class="icon icon1" @click="toUrl('/pages/index/index')">
 				    <text class="line1">跑酷</text>
@@ -38,9 +38,10 @@
 		</view>
 		<view class="right">
 			<!-- Right Content -->
-			<view class="rightButton" @click="toUrl('/pages/under-construction/under-construction')">
-			    <uni-icons type="person" size="24"></uni-icons>
-			    <text>??</text>
+			<view class="rightButton" @click="toUrl('/pages/about/about')">
+			    <uni-icons type="info" size="24"></uni-icons>
+			    <text class="right-text-main">关于</text>
+			    <text class="right-text-sub">About</text>
 			</view>
 		</view>
 	</view>
@@ -236,7 +237,6 @@
 		height: 100rpx;
 		width: 150rpx;
 		padding: 0 25rpx 10rpx 25rpx;
-		
 		.rightButton {
 			// border: 1px solid red;
 			box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4); /* 水平偏移量 垂直偏移量 模糊半径 阴影颜色 */
@@ -254,8 +254,16 @@
 			    font-size: 10px; /* 设置图标大小 */
 			    margin-bottom: 2px; /* 给图标和文字之间留一些空间 */
 			}
-			text {
-			    font-size: 20px; /* 设置文字大小 */
+			.right-text-main {
+			    font-size: 28rpx; /* 设置文字大小 */
+				color: #333;
+				margin-top: 2rpx;
+			}
+			.right-text-sub {
+			    font-size: 15rpx; /* 设置文字大小 */
+				color: darkblue;
+				opacity: 0.77;
+				margin-top: -2rpx;
 			}
 		}
 

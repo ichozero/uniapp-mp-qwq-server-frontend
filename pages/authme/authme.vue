@@ -685,12 +685,60 @@ function onAvatarError(name){
             gap: 18px;
         }
 
-        @media (min-width: 1000px) {
+        @media (min-width: 1000px) and (max-width: 1399px) {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             width: calc(100% - 80px);
-            max-width: 1200px;
+            max-width: 1400px;
             padding: 24px;
             gap: 22px;
+        }
+
+        @media (min-width: 1400px) and (max-width: 1799px) {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            width: calc(100% - 80px);
+            max-width: 1800px;
+            padding: 24px;
+            gap: 24px;
+        }
+
+        @media (min-width: 1800px) and (max-width: 2199px) {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            width: calc(100% - 100px);
+            max-width: 2200px;
+            padding: 28px;
+            gap: 26px;
+        }
+
+        @media (min-width: 2200px) and (max-width: 2599px) {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            width: calc(100% - 100px);
+            max-width: 2600px;
+            padding: 30px;
+            gap: 28px;
+        }
+
+        @media (min-width: 2600px) and (max-width: 2999px) {
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            width: calc(100% - 120px);
+            max-width: 3000px;
+            padding: 32px;
+            gap: 30px;
+        }
+
+        @media (min-width: 3000px) and (max-width: 3399px) {
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            width: calc(100% - 120px);
+            max-width: 3400px;
+            padding: 34px;
+            gap: 32px;
+        }
+
+        @media (min-width: 3400px) {
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            width: calc(100% - 140px);
+            max-width: 3800px;
+            padding: 36px;
+            gap: 34px;
         }
     }
 

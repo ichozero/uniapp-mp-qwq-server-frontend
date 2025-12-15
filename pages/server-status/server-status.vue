@@ -16,45 +16,62 @@
 		<!-- Content -->
 		<scroll-view class="content-scroll" scroll-y>
 			<view class="content" :style="{ paddingTop: scrollBoxHeight + 'px' }">
-				<view v-if="loading" class="loading">
-					<view class="spinner"></view>
-					<text>正在加载服务器信息...</text>
-				</view>
-
-				<view v-else-if="error" class="error">
-					<text>加载失败：{{ error }}</text>
-				</view>
-
-				<view v-else class="details">
+				<!-- Always show basic server info -->
+				<view class="details">
 					<view class="summary">
-						<view class="status" :class="statusClass">{{ statusText }}</view>
-						<view class="title">{{ data.host }}:{{ data.port }}</view>
-						<view class="ip">IP: {{ data.ip_address || '-' }}</view>
+						<view v-if="loading" class="status loading-status">加载中...</view>
+						<view v-else-if="error" class="status offline">{{ statusText }}</view>
+						<view v-else class="status" :class="statusClass">{{ statusText }}</view>
+						
+						<view class="title-with-copy">
+							<text class="title">{{ currentServer.addr }}</text>
+							<view class="copy-btn" @click="copyToClipboard(currentServer.addr)">
+								<text class="copy-icon">📋</text>
+							</view>
+						</view>
+						
+						<view v-if="data.ip_address" class="ip-with-copy">
+							<text class="ip">IP: {{ data.ip_address }}</text>
+							<view class="copy-btn" @click="copyToClipboard(data.ip_address)">
+								<text class="copy-icon">📋</text>
+							</view>
+						</view>
 					</view>
 
-					<view class="kv">
-						<text class="k">版本</text>
-						<text class="v">{{ data.version?.name_clean || '-' }}</text>
-					</view>
-					<view class="kv">
-						<text class="k">在线玩家</text>
-						<text class="v">{{ data.players?.online ?? '-' }} / {{ data.players?.max ?? '-' }}</text>
-					</view>
-					<view class="kv">
-						<text class="k">MOTD</text>
-						<text class="v">{{ data.motd?.clean || '-' }}</text>
-					</view>
-					<view class="kv" v-if="data.srv_record">
-						<text class="k">SRV</text>
-						<text class="v">{{ data.srv_record.host }}:{{ data.srv_record.port }}</text>
+					<view v-if="loading" class="loading">
+						<view class="spinner"></view>
+						<text>正在加载详细信息...</text>
 					</view>
 
-					<image
-						v-if="data.icon"
-						:src="data.icon"
-						mode="aspectFit"
-						class="server-icon"
-					/>
+					<view v-else-if="error" class="error">
+						<text>加载失败：{{ error }}</text>
+					</view>
+
+					<view v-else>
+						<view class="kv">
+							<text class="k">版本</text>
+							<text class="v">{{ data.version?.name_clean || '-' }}</text>
+						</view>
+						<view class="kv">
+							<text class="k">在线玩家</text>
+							<text class="v">{{ data.players?.online ?? '-' }} / {{ data.players?.max ?? '-' }}</text>
+						</view>
+						<view class="kv">
+							<text class="k">MOTD</text>
+							<text class="v">{{ data.motd?.clean || '-' }}</text>
+						</view>
+						<view class="kv" v-if="data.srv_record">
+							<text class="k">SRV</text>
+							<text class="v">{{ data.srv_record.host }}:{{ data.srv_record.port }}</text>
+						</view>
+
+						<image
+							v-if="data.icon"
+							:src="data.icon"
+							mode="aspectFit"
+							class="server-icon"
+						/>
+					</view>
 				</view>
 			</view>
 		</scroll-view>
@@ -81,8 +98,29 @@ const loading = ref(false)
 const error = ref('')
 const data = ref({})
 
+const currentServer = computed(() => servers.value[currentIdx.value])
 const statusClass = computed(() => (data.value?.online ? 'online' : 'offline'))
 const statusText = computed(() => (data.value?.online ? '在线' : '离线'))
+
+function copyToClipboard(text) {
+	uni.setClipboardData({
+		data: text,
+		success: () => {
+			uni.showToast({
+				title: '已复制到剪贴板',
+				icon: 'success',
+				duration: 1500
+			})
+		},
+		fail: () => {
+			uni.showToast({
+				title: '复制失败',
+				icon: 'none',
+				duration: 1500
+			})
+		}
+	})
+}
 
 async function fetchStatus() {
 	error.value = ''
@@ -170,8 +208,13 @@ onLoad((event) => {
 .status { display: inline-block; padding: 6rpx 12rpx; border-radius: 999px; font-size: 22rpx; margin-bottom: 8rpx; }
 .status.online { background: #e8f5e9; color: #2e7d32; }
 .status.offline { background: #ffebee; color: #c62828; }
-.title { font-weight: 600; margin: 4rpx 0; word-break: break-word; white-space: normal; }
-.ip { color: #666; word-break: break-word; }
+.status.loading-status { background: #fff3e0; color: #e65100; }
+.title-with-copy, .ip-with-copy { display: flex; align-items: center; gap: 8rpx; margin: 4rpx 0; }
+.title { font-weight: 600; word-break: break-word; white-space: normal; flex: 1; }
+.ip { color: #666; word-break: break-word; flex: 1; }
+.copy-btn { padding: 4rpx 8rpx; background: rgba(0,0,0,0.05); border-radius: 6rpx; cursor: pointer; transition: background 0.2s; }
+.copy-btn:active { background: rgba(0,0,0,0.15); }
+.copy-icon { font-size: 24rpx; }
 
 .kv {
 	display: flex;

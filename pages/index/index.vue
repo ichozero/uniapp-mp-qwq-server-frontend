@@ -666,13 +666,58 @@
 		    padding-right: 3vw;
 		}
 		
-		@media (min-width: 1400px) {
-		    grid-template-columns: repeat(4, minmax(320px, 1fr)); 
+		@media (min-width: 1400px) and (max-width: 1799px) {
+		    grid-template-columns: repeat(4, minmax(300px, 1fr)); 
 		    width: 90vw;
-		    max-width: 1600px;
+		    max-width: 1800px;
 		    gap: 20px;
 		    padding-left: 5vw;
 		    padding-right: 5vw;
+		}
+
+		@media (min-width: 1800px) and (max-width: 2199px) {
+		    grid-template-columns: repeat(5, minmax(300px, 1fr)); 
+		    width: 92vw;
+		    max-width: 2200px;
+		    gap: 22px;
+		    padding-left: 4vw;
+		    padding-right: 4vw;
+		}
+
+		@media (min-width: 2200px) and (max-width: 2599px) {
+		    grid-template-columns: repeat(6, minmax(300px, 1fr)); 
+		    width: 92vw;
+		    max-width: 2600px;
+		    gap: 24px;
+		    padding-left: 4vw;
+		    padding-right: 4vw;
+		}
+
+		@media (min-width: 2600px) and (max-width: 2999px) {
+		    grid-template-columns: repeat(7, minmax(300px, 1fr)); 
+		    width: 94vw;
+		    max-width: 3000px;
+		    gap: 26px;
+		    padding-left: 3vw;
+		    padding-right: 3vw;
+		}
+
+		@media (min-width: 3000px) and (max-width: 3399px) {
+		    grid-template-columns: repeat(8, minmax(300px, 1fr)); 
+		    width: 94vw;
+		    max-width: 3400px;
+		    gap: 28px;
+		    padding-left: 3vw;
+		    padding-right: 3vw;
+		}
+
+		@media (min-width: 3400px) {
+		    grid-template-columns: repeat(9, minmax(300px, 1fr)); 
+		    width: 95vw;
+		    max-width: 3800px;
+		    gap: 30px;
+		    padding-left: 2.5vw;
+		    padding-right: 2.5vw;
 		}
 
 		
