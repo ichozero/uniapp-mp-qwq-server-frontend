@@ -26,12 +26,9 @@ A UniApp-based frontend for a Minecraft server companion mini-program. It shows 
 
    ![Markdown Guide](./doc/markdown_guide.png)
 
-4. Server Status
-   - Query and display basic online status info.
-
-   WIP placeholder:
-
-   ![Under Construction](./doc/under_construction.png)
+4. About page
+   - Display basic info about this site.
+   ![关于页面](./doc/about.png)
 
 ## Overview
 

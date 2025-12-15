@@ -26,12 +26,9 @@
 
    ![进服指导文档](./doc/markdown_guide.png)
 
-4. 服务器状态
-   - 查询并展示服务器在线状态与基础信息。
-   
-   当前页面建设中（示意）：
-   
-   ![Under Construction](./doc/under_construction.png)
+4. About关于
+   - 展示本网站的一些信息捏
+   ![关于页面](./doc/about.png)
 
 ## 简介
 
