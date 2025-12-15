@@ -110,7 +110,7 @@
         "title" : "qwq_scoreboard",
         "router" : {
             "mode" : "hash",
-            "base" : "/qsfrontend/"
+            "base" : "./"
         }
     },
     "locale" : "zh-Hans"

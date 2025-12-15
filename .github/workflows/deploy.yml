@@ -27,6 +27,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Fix asset paths for GitHub Pages
+        run: |
+          sed -i 's|/qsfrontend/|./|g' unpackage/dist/build/web/index.html
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
